@@ -18,7 +18,7 @@ class TrainStops extends StatelessWidget {
         actions: <Widget>[
           FlatButton(
             onPressed: () {
-                    if (trains[trainIndex]["trainId"] != null) {
+                    if (trains[trainIndex]["trainId"] != null&&trains[trainIndex]["live"]!=true) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -40,7 +40,7 @@ class TrainStops extends StatelessWidget {
                                 right: 20.0),
                             contentTextStyle:
                                 TextStyle(fontSize: 15.0, color: Colors.black),
-                            content: Text("Your Location & Journey Direction"),
+                            content: Text("Your Train is already Live or there was an error"),
                             title: Text("Please select:"),
                             titleTextStyle: TextStyle(
                                 fontSize: 20.0,
@@ -60,6 +60,7 @@ class TrainStops extends StatelessWidget {
                     }
                   },
             child: Text("Track"),
+            
           )
         ],
         title: Text(
@@ -67,7 +68,7 @@ class TrainStops extends StatelessWidget {
                       trains[trainIndex]["stops"][station]["scheduletime"])
                   .add(trains[trainIndex]["delayTime"]))
               .format(context)),
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white),
         ),
       ),
       body: Scrollbar(

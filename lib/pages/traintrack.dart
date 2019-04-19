@@ -3,6 +3,7 @@ import 'package:location/location.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:screen/screen.dart';
 
 class TrackingSwitch extends StatefulWidget {
   final String _trainId;
@@ -68,6 +69,7 @@ class _TrackingSwitchState extends State<TrackingSwitch> {
 
   trackingSwitchOff() async {
     await _locationSubscription.cancel();
+    Screen.keepOn(false);
     _currentLocation = null;
     t.cancel();
   }
@@ -81,6 +83,7 @@ class _TrackingSwitchState extends State<TrackingSwitch> {
         });
       }
     });
+    Screen.keepOn(true);
     Timer(Duration(seconds: 5), () {
       radarPost();
     });

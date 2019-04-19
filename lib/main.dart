@@ -22,15 +22,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-        /* appBarTheme: AppBarTheme().copyWith(
+
+        scaffoldBackgroundColor: Colors.black,
+        appBarTheme: AppBarTheme().copyWith(
           iconTheme: IconThemeData(color: Colors.black,size: 24.0),
-          color: Colors.white,
+          color: Colors.black,
           elevation: 0.0,
-        ), */
-        brightness: Brightness.light,
+        ),
+        brightness: Brightness.dark,
         buttonTheme: ButtonThemeData().copyWith(
           buttonColor: Colors.brown,
+
           shape: BeveledRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),

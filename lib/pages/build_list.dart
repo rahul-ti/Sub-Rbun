@@ -120,19 +120,58 @@ class _TrainListState extends State<TrainListBuild> {
                   DateTime mystationliveTime = scheduletime.add(delayTime);
                   Widget _delay() {
                     if (trains[index]["live"] == true) {
-                      return Text(
-                          "The train is delayed by ${delayTime.inMinutes%1440.toInt()} Minutes");
+                      return Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Text(
+                              "${trains[index]["route"]}",
+                              style: TextStyle(fontSize: 25.0),
+                            ),
+                            SizedBox(
+                              height: 4.0,
+                            ),
+                            Text(
+                              "${trains[index]["pace"]}",
+                              style: TextStyle(
+                                  fontSize: 15.0,
+                                  letterSpacing: -1.0,
+                                  color: Colors.grey[700]),
+                            ),
+                            Text(
+                              "The train is delayed by ${delayTime.inMinutes % 1440.toInt()} Minutes",
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 8.0),
+                            ),
+                            Text(
+                                "The train last crossed ${trains[index]["update"]["updateLocation"]} at ${TimeOfDay.fromDateTime(DateTime.parse(trains[index]["update"]["actualCreatedAt"])).format(context)}",
+                                style: TextStyle(
+                                    color: Colors.grey, fontSize: 8.0))
+                          ],
+                        ),
+                      );
                     } else {
-                      return Container();
-                    }
-                  }
-
-                  Widget _lastLoc() {
-                    if (trains[index]["live"] == true) {
-                      return Text(
-                          "The train last crossed ${trains[index]["update"]["updateLocation"]} at ${TimeOfDay.fromDateTime(DateTime.parse(trains[index]["update"]["actualCreatedAt"])).format(context)}");
-                    } else {
-                      return Container();
+                      return Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Text(
+                              "${trains[index]["route"]}",
+                              style: TextStyle(fontSize: 25.0),
+                            ),
+                            SizedBox(
+                              height: 16.0,
+                            ),
+                            Text(
+                              "${trains[index]["pace"]}",
+                              style: TextStyle(
+                                  fontSize: 15.0,
+                                  letterSpacing: -1.0,
+                                  color: Colors.grey[700]),
+                            ),
+                          ],
+                        ),
+                      );
                     }
                   }
 
@@ -199,32 +238,11 @@ class _TrainListState extends State<TrainListBuild> {
                             SizedBox(
                               width: 8.0,
                             ),
-                            Expanded(
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  Text(
-                                    "${trains[index]["route"]}",
-                                    style: TextStyle(fontSize: 18.0),
-                                  ),
-                                  SizedBox(
-                                    width: 8.0,
-                                  ),
-                                  Text(
-                                    "${trains[index]["pace"]}",
-                                    style: TextStyle(
-                                        fontSize: 15.0,
-                                        letterSpacing: -1.0,
-                                        color: Colors.grey[700]),
-                                  ),
-                                  _delay(),
-                                  _lastLoc()
-                                ],
-                              ),
-                            ),
+                            _delay(),
                           ],
-                        )),);},
+                        )),
+                  );
+                },
               ),
             );
           } else {

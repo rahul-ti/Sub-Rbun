@@ -13,15 +13,14 @@ class TrainsList extends StatelessWidget {
           titleSpacing: 0.0,
           bottom: PreferredSize(
               child: Container(
-                color: Colors.black,
+                color: Colors.white,
                 height: 4.0,
               ),
               preferredSize: Size.fromHeight(4.0)),
           leading: InkWell(
-            splashColor: Colors.white,
             child: Icon(
               Icons.keyboard_arrow_left,
-              size: 26.0,
+              size: 26.0,color: Colors.white,
             ),
             onTap: () => Navigator.pop(context),
           ),
@@ -36,7 +35,7 @@ class TrainsList extends StatelessWidget {
                     Text(
                       station,
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 16.0,
                         fontWeight: FontWeight.normal,
                       ),
@@ -46,7 +45,7 @@ class TrainsList extends StatelessWidget {
                     ),
                     Icon(
                       Icons.arrow_forward,
-                      color: Colors.black,
+                      color: Colors.white,
                       size: 20.0,
                     ),
                     SizedBox(
@@ -55,7 +54,7 @@ class TrainsList extends StatelessWidget {
                     Text(
                       towardsDirection,
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 16.0,
                         fontWeight: FontWeight.normal,
                       ),
@@ -67,7 +66,7 @@ class TrainsList extends StatelessWidget {
                 padding: EdgeInsets.only(right: 10.0),
                 icon: Icon(
                   Icons.refresh,
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
                 tooltip: 'Refresh',
                 onPressed: () {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './trainslist.dart';
 import 'package:location/location.dart';
 import 'package:flutter/services.dart';
+
 class HomePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -14,7 +15,7 @@ class _HomePageState extends State<HomePage> {
   var _stations = [
     "Kalyan",
     "Thakurli",
-    "Dombivli",
+    "Dombivali",
     "Kopar",
     "Diva",
     "Mumbra",
@@ -38,7 +39,7 @@ class _HomePageState extends State<HomePage> {
   Location _locationService = new Location();
   String error;
   LocationData location;
- @override
+  @override
   void initState() {
     super.initState();
 
@@ -70,15 +71,17 @@ class _HomePageState extends State<HomePage> {
       location = null;
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+
         appBar: AppBar(
           title: Text(
-            "Sub Rbun",
+            "Sub-Rbun",
             style: TextStyle(
-              color: Colors.black,
+              color: Colors.white,
               fontWeight: FontWeight.normal,
             ),
           ),
@@ -148,18 +151,19 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: 5.0,
                   ),
-                  OutlineButton(
-                    borderSide: BorderSide(width: 1.0),
-                    highlightedBorderColor: Colors.brown,
+                  FlatButton(
+                  color: Colors.white,
+                    //borderSide: BorderSide(width: 1.0),
+                    //highlightedBorderColor: Colors.brown,
                     padding: EdgeInsets.all(0.0),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text("  Search"),
+                        Text("  Search",style: TextStyle(color: Colors.black),),
                         Icon(
-                          Icons.keyboard_arrow_right,
+                          Icons.keyboard_arrow_right,color: Colors.black,
                         )
                       ],
                     ),
