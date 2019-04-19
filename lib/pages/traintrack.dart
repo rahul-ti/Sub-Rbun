@@ -98,13 +98,21 @@ class _TrackingSwitchState extends State<TrackingSwitch> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: InkWell(
+          child: Icon(
+            Icons.keyboard_arrow_left,
+            size: 26.0,
+            color: Colors.white,
+          ),
+          onTap: () => Navigator.pop(context),
+        ),
         title: Text("Tracking"),
       ),
       body: Column(
         children: <Widget>[
           Text(_currentLocation != null
-              ? 'Continuous location: $_latitude & $_longitude & $_accuracy\n'
-              : 'Error: $error\n'),
+              ? ' Latitude: $_latitude\n Longitude: $_longitude\n Accuracy: $_accuracy\n'
+              : 'Error: Please enable Tracking\n'),
           SwitchListTile(
             value: _switchTracking,
             title: Text("Switch Tracking"),

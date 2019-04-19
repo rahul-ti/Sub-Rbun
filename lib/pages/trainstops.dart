@@ -15,60 +15,77 @@ class TrainStops extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        bottom: PreferredSize(
+            child: Container(
+              color: Colors.white,
+              height: 4.0,
+            ),
+            preferredSize: Size.fromHeight(4.0)),
+        leading: InkWell(
+          child: Icon(
+            Icons.keyboard_arrow_left,
+            size: 26.0,
+            color: Colors.white,
+          ),
+          onTap: () => Navigator.pop(context),
+        ),
+        
         actions: <Widget>[
           FlatButton(
+            padding: EdgeInsets.all(0.0),
             onPressed: () {
-                    if (trains[trainIndex]["trainId"] != null&&trains[trainIndex]["live"]!=true) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              TrackingSwitch(trains[trainIndex]["trainId"]),
-                        ),
-                      );
-                    } else {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            shape: BeveledRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                            contentPadding: EdgeInsets.only(
-                                bottom: 0.0,
-                                top: 15.0,
-                                left: 20.0,
-                                right: 20.0),
-                            contentTextStyle:
-                                TextStyle(fontSize: 15.0, color: Colors.black),
-                            content: Text("Your Train is already Live or there was an error"),
-                            title: Text("Please select:"),
-                            titleTextStyle: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.red),
-                            actions: <Widget>[
-                              FlatButton(
-                                child: Text("OK"),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              )
-                            ],
-                          );
-                        },
-                      );
-                    }
+              if (trains[trainIndex]["trainId"] != null &&
+                  trains[trainIndex]["live"] != true) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        TrackingSwitch(trains[trainIndex]["trainId"]),
+                  ),
+                );
+              } else {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0)),
+                      contentPadding: EdgeInsets.only(
+                          bottom: 0.0, top: 15.0, left: 20.0, right: 20.0),
+                      contentTextStyle:
+                          TextStyle(fontSize: 15.0, color: Colors.black),
+                      content: Text(
+                          "Your Train is already Live or there was an error"),
+                      title: Text("Please select:"),
+                      titleTextStyle: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text("OK"),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        )
+                      ],
+                    );
                   },
+                );
+              }
+            },
             child: Text("Track"),
-            
           )
         ],
+        titleSpacing: 0.0,
+        centerTitle: false,
         title: Text(
-          (TimeOfDay.fromDateTime(DateTime.parse(
-                      trains[trainIndex]["stops"][station]["scheduletime"])
-                  .add(trains[trainIndex]["delayTime"]))
-              .format(context)),
-          style: TextStyle(color: Colors.white),
+          "${TimeOfDay.fromDateTime(DateTime.parse(trains[trainIndex]["stops"][station]["scheduletime"]).add(trains[trainIndex]["delayTime"])).format(context)}  -  $station",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            letterSpacing: -1.0,
+          ),
         ),
       ),
       body: Scrollbar(

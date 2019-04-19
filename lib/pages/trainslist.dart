@@ -20,7 +20,8 @@ class TrainsList extends StatelessWidget {
           leading: InkWell(
             child: Icon(
               Icons.keyboard_arrow_left,
-              size: 26.0,color: Colors.white,
+              size: 26.0,
+              color: Colors.white,
             ),
             onTap: () => Navigator.pop(context),
           ),
