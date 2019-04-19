@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import './trainslist.dart';
 import 'package:location/location.dart';
@@ -39,6 +41,8 @@ class _HomePageState extends State<HomePage> {
   Location _locationService = new Location();
   String error;
   LocationData location;
+
+  bool hasConnection;
   @override
   void initState() {
     super.initState();
@@ -76,7 +80,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-
         appBar: AppBar(
           title: Text(
             "Sub-Rbun",
@@ -152,7 +155,7 @@ class _HomePageState extends State<HomePage> {
                     height: 5.0,
                   ),
                   FlatButton(
-                  color: Colors.white,
+                    color: Colors.white,
                     //borderSide: BorderSide(width: 1.0),
                     //highlightedBorderColor: Colors.brown,
                     padding: EdgeInsets.all(0.0),
@@ -161,14 +164,30 @@ class _HomePageState extends State<HomePage> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text("  Search",style: TextStyle(color: Colors.black),),
+                        Text(
+                          "  Search",
+                          style: TextStyle(color: Colors.black),
+                        ),
                         Icon(
-                          Icons.keyboard_arrow_right,color: Colors.black,
+                          Icons.keyboard_arrow_right,
+                          color: Colors.black,
                         )
                       ],
                     ),
-                    onPressed: () {
-                      if (_station != null && _towardsDirection != null) {
+                    onPressed: () async {
+                      try {
+                        final result =
+                            await InternetAddress.lookup('google.com');
+                        if (result.isNotEmpty &&
+                            result[0].rawAddress.isNotEmpty) {
+                          hasConnection = true;
+                        } else {
+                          hasConnection = false;
+                        }
+                      } on SocketException catch (_) {
+                        hasConnection = false;
+                      }
+                      if (_station != null && _towardsDirection != null && hasConnection==true) {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -181,6 +200,7 @@ class _HomePageState extends State<HomePage> {
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
+                              backgroundColor: Colors.white,
                               shape: BeveledRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0)),
                               contentPadding: EdgeInsets.only(
@@ -191,7 +211,7 @@ class _HomePageState extends State<HomePage> {
                               contentTextStyle: TextStyle(
                                   fontSize: 15.0, color: Colors.black),
                               content:
-                                  Text("Your Location & Journey Direction"),
+                                  Text("Your Location & Journey Direction\nOr Check Internet Connection"),
                               title: Text("Please select:"),
                               titleTextStyle: TextStyle(
                                   fontSize: 20.0,
@@ -199,7 +219,12 @@ class _HomePageState extends State<HomePage> {
                                   color: Colors.red),
                               actions: <Widget>[
                                 FlatButton(
-                                  child: Text("OK"),
+                                  child: Text(
+                                    "OK",
+                                    style: TextStyle(
+                                        color: Colors.teal,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },

@@ -29,7 +29,6 @@ class TrainStops extends StatelessWidget {
           ),
           onTap: () => Navigator.pop(context),
         ),
-        
         actions: <Widget>[
           FlatButton(
             padding: EdgeInsets.all(0.0),
@@ -48,6 +47,7 @@ class TrainStops extends StatelessWidget {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
+                      backgroundColor: Colors.white,
                       shape: BeveledRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0)),
                       contentPadding: EdgeInsets.only(
@@ -55,15 +55,15 @@ class TrainStops extends StatelessWidget {
                       contentTextStyle:
                           TextStyle(fontSize: 15.0, color: Colors.black),
                       content: Text(
-                          "Your Train is already Live or there was an error"),
-                      title: Text("Please select:"),
+                          "Your Train is already Live",style: TextStyle(color: Colors.black),),
+                      title: Text("Error"),
                       titleTextStyle: TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.red),
                       actions: <Widget>[
                         FlatButton(
-                          child: Text("OK"),
+                          child: Text("OK",style: TextStyle(color: Colors.teal,fontWeight: FontWeight.bold),),
                           onPressed: () {
                             Navigator.pop(context);
                           },
@@ -121,9 +121,8 @@ class TrainStops extends StatelessWidget {
                                 TimeOfDay.fromDateTime(stopLiveTime)
                                     .format(context),
                                 style: TextStyle(
-                                    color: Colors.grey[700],
-                                    fontSize: 18.0,
-                                    letterSpacing: -1.0)),
+                                    color: trains[trainIndex]["live"]?Colors.green:Colors.red,
+                                    fontSize: 20.0,fontWeight: FontWeight.bold)),
                             Expanded(
                               child: Row(
                                 mainAxisAlignment:
@@ -160,9 +159,9 @@ class TrainStops extends StatelessWidget {
                                   width: 10.0,
                                 ),
                                 Text(
-                                    "PF No. ${trains[trainIndex]["stops"][trains[trainIndex]["stoppingStations"][index]]["platform"]}",
+                                    "PF No.\n      ${trains[trainIndex]["stops"][trains[trainIndex]["stoppingStations"][index]]["platform"]}",
                                     style: TextStyle(
-                                        color: Colors.grey[700],
+                                        color: Colors.teal[300],
                                         fontSize: 15.0,
                                         letterSpacing: -1.0)),
                               ],

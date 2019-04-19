@@ -10,7 +10,6 @@ final String url =
 
 final GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
     new GlobalKey<RefreshIndicatorState>();
-//Repplce list noewtime with Trains list
 
 class TrainListBuild extends StatefulWidget {
   final String _station;
@@ -129,24 +128,27 @@ class _TrainListState extends State<TrainListBuild> {
                               style: TextStyle(fontSize: 25.0),
                             ),
                             SizedBox(
-                              height: 4.0,
+                              height: 2.0,
                             ),
                             Text(
                               "${trains[index]["pace"]}",
                               style: TextStyle(
-                                  fontSize: 15.0,
-                                  letterSpacing: -1.0,
-                                  color: Colors.grey[700]),
+                                  fontSize: 16.0,
+                                  color: Colors.orange[200],
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 2.0,
                             ),
                             Text(
-                              "The train is delayed by ${delayTime.inMinutes % 1440.toInt()} Minutes",
+                              "Delayed: ${delayTime.inMinutes % 1440.toInt()} Minutes",
                               style:
-                                  TextStyle(color: Colors.grey, fontSize: 8.0),
+                                  TextStyle(color: Colors.indigo[100], fontSize: 14.0,fontWeight: FontWeight.bold),
                             ),
                             Text(
-                                "The train last crossed ${trains[index]["update"]["updateLocation"]} at ${TimeOfDay.fromDateTime(DateTime.parse(trains[index]["update"]["actualCreatedAt"])).format(context)}",
+                                "Crossed ${trains[index]["update"]["updateLocation"]} at ${TimeOfDay.fromDateTime(DateTime.parse(trains[index]["update"]["actualCreatedAt"])).format(context)}",
                                 style: TextStyle(
-                                    color: Colors.grey, fontSize: 8.0))
+                                    color: Colors.cyan, fontSize: 13.0,fontWeight: FontWeight.bold))
                           ],
                         ),
                       );
@@ -160,14 +162,14 @@ class _TrainListState extends State<TrainListBuild> {
                               style: TextStyle(fontSize: 25.0),
                             ),
                             SizedBox(
-                              height: 16.0,
+                              height: 8.0,
                             ),
                             Text(
                               "${trains[index]["pace"]}",
                               style: TextStyle(
-                                  fontSize: 15.0,
-                                  letterSpacing: -1.0,
-                                  color: Colors.grey[700]),
+                                  fontSize: 16.0,
+                                  color: Colors.orange[200],
+                                  fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
@@ -206,7 +208,7 @@ class _TrainListState extends State<TrainListBuild> {
                               Text(
                                 "Train ${trains[index]["trainId"]}",
                                 style: TextStyle(
-                                    fontSize: 11.0, color: Colors.grey[600]),
+                                    fontSize: 11.0, color: Colors.yellow),
                               ),
                               SizedBox(
                                 height: 8.0,
@@ -217,7 +219,7 @@ class _TrainListState extends State<TrainListBuild> {
                                 style: TextStyle(
                                   fontSize: 20.0,
                                   letterSpacing: -1.0,
-                                ),
+                                fontWeight: FontWeight.bold),
                               ),
                               SizedBox(
                                 height: 8.0,
