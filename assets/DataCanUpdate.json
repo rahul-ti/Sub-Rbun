@@ -515,14 +515,14 @@
     "update": {
       "live": false
     }
-  },
+  }, 
   "MUM6": {
     "destination": "Dadar",
     "pace": "Slow",
     "route": "Kalyan-Dadar",
     "source": "Kalyan",
     "stoppingStations": ["Kalyan", "Thakurli", "Dombivali", "Kopar", "Diva", "Mumbra", "Kalwa", "Thane", "Mulund", "Nahur", "Bhandup", "Kanjurmarg", "Vikhroli", "Ghatkopar", "Vidyavihar", "Kurla", "Sion", "Matunga", "Dadar"],
-    "stops": {
+    "stops": { 
       "Kalyan": {
         "platform": "1",
         "scheduletime": "2019-03-06T07:34:00.000",

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'dart:async';
@@ -14,6 +16,8 @@ class TrackingSwitch extends StatefulWidget {
 
 class _TrackingSwitchState extends State<TrackingSwitch> {
   final String trainId;
+
+  bool hasConnection;
   _TrackingSwitchState(this.trainId);
   LocationData _currentLocation;
 
@@ -28,6 +32,12 @@ class _TrackingSwitchState extends State<TrackingSwitch> {
   double _accuracy = 0.0;
   LocationData location;
   bool _permission = false;
+
+  List deviceId = [];
+  List data = [];
+  var response;
+  int j;
+  var firebasedata;
 
   @override
   void initState() {
@@ -84,13 +94,32 @@ class _TrackingSwitchState extends State<TrackingSwitch> {
       }
     });
     Screen.keepOn(true);
-    Timer(Duration(seconds: 5), () {
-      radarPost();
+    Timer(Duration(seconds: 5), () async {
+      try {
+        final result = await InternetAddress.lookup('google.com');
+        if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+          hasConnection = true;
+          radarPost();
+        } else {
+          hasConnection = false;
+        }
+      } on SocketException catch (_) {
+        hasConnection = false;
+      }
     });
 
-    t = Timer.periodic(Duration(minutes: 1), (t) {
-      print("object");
-      radarPost();
+    t = Timer.periodic(Duration(minutes: 1), (t) async {
+      try {
+        final result = await InternetAddress.lookup('google.com');
+        if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+          hasConnection = true;
+          radarPost();
+        } else {
+          hasConnection = false;
+        }
+      } on SocketException catch (_) {
+        hasConnection = false;
+      }
     });
   }
 
