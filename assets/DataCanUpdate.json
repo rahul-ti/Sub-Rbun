@@ -1,7 +1,7 @@
 {
   "MUM0": {
     "destination": "Dadar",
-    "pace": "Slow",
+    "pace": "Semi-Fast",
     "route": "Kalyan-Dadar",
     "source": "Kalyan",
     "stoppingStations": ["Kalyan", "Thakurli", "Dombivali", "Kopar", "Diva", "Mumbra", "Kalwa", "Thane", "Mulund", "Vikhroli", "Kurla", "Dadar"],
@@ -179,10 +179,7 @@
     "towardsDirection": "Towards CSMT",
     "trainId": "MUM1",
     "update": {
-      "actualCreatedAt": "2019-04-15 09:17:12.862",
-      "live": true,
-      "type": "user.entered_geofence",
-      "updateLocation": "Kopar"
+      "live": false
     }
   },
   "MUM2": {
@@ -335,7 +332,7 @@
   },
   "MUM4": {
     "destination": "Dadar",
-    "pace": "Slow",
+    "pace": "Semi-Fast",
     "route": "Kalyan-Dadar",
     "source": "Kalyan",
     "stoppingStations": ["Kalyan", "Thakurli", "Dombivali", "Kopar", "Diva", "Mumbra", "Kalwa", "Thane", "Mulund", "Vikhroli", "Kurla", "Dadar"],

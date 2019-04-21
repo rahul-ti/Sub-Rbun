@@ -146,7 +146,7 @@ class _TrainListState extends State<TrainListBuild> {
                                   TextStyle(color: Colors.indigo[100], fontSize: 14.0,fontWeight: FontWeight.bold),
                             ),
                             Text(
-                                "Crossed ${trains[index]["update"]["updateLocation"]} at ${TimeOfDay.fromDateTime(DateTime.parse(trains[index]["update"]["actualCreatedAt"])).format(context)}",
+                                "Crossed ${trains[index]["update"]["updateLocation"]} at ${TimeOfDay.fromDateTime(DateTime.parse(trains[index]["update"]["actualCreatedAt"]).toLocal()).format(context)}",
                                 style: TextStyle(
                                     color: Colors.cyan, fontSize: 13.0,fontWeight: FontWeight.bold))
                           ],

@@ -33,8 +33,7 @@ class TrainStops extends StatelessWidget {
           FlatButton(
             padding: EdgeInsets.all(0.0),
             onPressed: () {
-              if (trains[trainIndex]["trainId"] != null &&
-                  trains[trainIndex]["live"] != true) {
+              if (trains[trainIndex]["trainId"] != null) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
