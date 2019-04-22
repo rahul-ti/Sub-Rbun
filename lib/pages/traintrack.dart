@@ -140,7 +140,7 @@ class _TrackingSwitchState extends State<TrackingSwitch> {
       body: Column(
         children: <Widget>[
           Text(_currentLocation != null
-              ? ' Latitude: $_latitude\n Longitude: $_longitude\n Accuracy: $_accuracy\n'
+              ? ' Latitude: $_latitude\n Longitude: $_longitude\n Accuracy: $_accuracy\n Train ID: $trainId'
               : 'Error: Please enable Tracking\n'),
           SwitchListTile(
             value: _switchTracking,
